@@ -1,5 +1,6 @@
 window.goConfig = {
     apiUrl: 'https://dsgocdnapi.azureedge.net/api/v2',
+    bigLimit: 'limit=199999',
     tableauInit: function(initCallback) {
         initCallback();
     },
