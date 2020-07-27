@@ -6,7 +6,7 @@
     // const getAjaxHeader = goConfig.getAjaxHeader; // TODO: probably needed for credentials in the future
     // const setCredentials = goConfig.setCredentails; // TODO: probably needed for credentials in the future
 
-    const url = apiUrl + '/region/?tableau=true&${bigLimit}';
+    const url = apiUrl + '/perstat/?tableau=true&${bigLimit}';
 
     // Create the connector object
     const goConnector = tableau.makeConnector();
@@ -22,14 +22,22 @@
             alias: "name",
             dataType: tableau.dataTypeEnum.string
         }, {
-            id: "region_name",
-            alias: "region name",
+            id: "code",
+            alias: "code",
             dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "country_id",
+            alias: "country id",
+            dataType: tableau.dataTypeEnum.int
+        }, {
+            id: "language",
+            alias: "language",
+            dataType: tableau.dataTypeEnum.int
         }];
 
         const tableInfo = {
-            id: "regions",
-            alias: "GO Regions Info",
+            id: "perstats",
+            alias: "GO PERStats Info",
             columns: cols
         };
 
@@ -42,12 +50,14 @@
     // Download the data
     goConnector.getData = function(table, doneCallback) {
         const getData = function(resp) {
-            const regions = resp.results;
-            const tableData = regions.map(function(region) {
+            const perstats = resp.results;
+            const tableData = perstats.map(function(ps) {
                 return {
-                    id: region.id,
-                    name: region.name,
-                    region_name: region.region_name
+                    id: ps.id,
+                    name: ps.name,
+                    code: ps.code,
+                    country_id: ps.country_id,
+                    language: ps.language
                 };
             });
 
@@ -70,8 +80,8 @@
     $(document).ready(function() {
         $("#submitButton").click(function() {
             // setCredentials(); // TODO: probably needed for credentials in the future
-            tableau.connectionName = "GO Regions"; // This will be the data source name in Tableau
+            tableau.connectionName = "GO PERStats"; // This will be the data source name in Tableau
             tableau.submit(goConnector); // This sends the connector object to Tableau
-        }).text("Get GO Regions Data!");
+        }).text("Get GO PERStats Data!");
     });
 })();

@@ -6,7 +6,7 @@
     // const getAjaxHeader = goConfig.getAjaxHeader; // TODO: probably needed for credentials in the future
     // const setCredentials = goConfig.setCredentails; // TODO: probably needed for credentials in the future
 
-    const url = apiUrl + '/region/?tableau=true&${bigLimit}';
+    const url = apiUrl + '/surge_alert/?tableau=true&${bigLimit}';
 
     // Create the connector object
     const goConnector = tableau.makeConnector();
@@ -18,18 +18,42 @@
             alias: "id",
             dataType: tableau.dataTypeEnum.int
         }, {
-            id: "name",
-            alias: "name",
+            id: "operation",
+            alias: "operation",
             dataType: tableau.dataTypeEnum.string
         }, {
-            id: "region_name",
-            alias: "region name",
-            dataType: tableau.dataTypeEnum.string
+            id: "atype",
+            alias: "atype",
+            dataType: tableau.dataTypeEnum.int
+        }, {
+            id: "category",
+            alias: "category",
+            dataType: tableau.dataTypeEnum.int
+        }, {
+            id: "deployment_needed",
+            alias: "deployment_needed",
+            dataType: tableau.dataTypeEnum.bool
+        }, {
+            id: "is_private",
+            alias: "is_private",
+            dataType: tableau.dataTypeEnum.bool
+        }, {
+            id: "created_at",
+            alias: "created at",
+            dataType: tableau.dataTypeEnum.datetime
+        }, {
+            id: "event_id",
+            alias: "emergency id",
+            dataType: tableau.dataTypeEnum.int
+        }, {
+            id: "event_name",
+            alias: "emergency name",
+            dataType: tableau.dataTypeEnum.int
         }];
 
         const tableInfo = {
-            id: "regions",
-            alias: "GO Regions Info",
+            id: "surge_alerts",
+            alias: "GO Surge Alerts Info",
             columns: cols
         };
 
@@ -42,12 +66,18 @@
     // Download the data
     goConnector.getData = function(table, doneCallback) {
         const getData = function(resp) {
-            const regions = resp.results;
-            const tableData = regions.map(function(region) {
+            const surgeAlerts = resp.results;
+            const tableData = surgeAlerts.map(function(sa) {
                 return {
-                    id: region.id,
-                    name: region.name,
-                    region_name: region.region_name
+                    id: sa.id,
+                    operation: sa.operation,
+                    atype: sa.atype,
+                    category: sa.category,
+                    deployment_needed: sa.deployment_needed,
+                    is_private: sa.is_private,
+                    created_at: sa.created_at,
+                    event_id: sa.event?.id,
+                    event_name: sa.event?.name
                 };
             });
 
@@ -70,8 +100,8 @@
     $(document).ready(function() {
         $("#submitButton").click(function() {
             // setCredentials(); // TODO: probably needed for credentials in the future
-            tableau.connectionName = "GO Regions"; // This will be the data source name in Tableau
+            tableau.connectionName = "GO Surge Alerts"; // This will be the data source name in Tableau
             tableau.submit(goConnector); // This sends the connector object to Tableau
-        }).text("Get GO Regions Data!");
+        }).text("Get GO Surge Alerts Data!");
     });
 })();

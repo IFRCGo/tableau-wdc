@@ -6,7 +6,7 @@
     // const getAjaxHeader = goConfig.getAjaxHeader; // TODO: probably needed for credentials in the future
     // const setCredentials = goConfig.setCredentails; // TODO: probably needed for credentials in the future
 
-    const url = apiUrl + '/region/?tableau=true&${bigLimit}';
+    const url = apiUrl + '/partner_deployment/?tableau=true&${bigLimit}';
 
     // Create the connector object
     const goConnector = tableau.makeConnector();
@@ -22,14 +22,38 @@
             alias: "name",
             dataType: tableau.dataTypeEnum.string
         }, {
-            id: "region_name",
-            alias: "region name",
+            id: "role",
+            alias: "role",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "activity",
+            alias: "activity",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "start_date",
+            alias: "start date",
+            dataType: tableau.dataTypeEnum.datetime
+        }, {
+            id: "end_date",
+            alias: "end date",
+            dataType: tableau.dataTypeEnum.datetime
+        }, {
+            id: "parent_society",
+            alias: "parent society",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "country_deployed_to",
+            alias: "country deployed to",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "districts_deployed_to",
+            alias: "districts deployed to",
             dataType: tableau.dataTypeEnum.string
         }];
 
         const tableInfo = {
-            id: "regions",
-            alias: "GO Regions Info",
+            id: "partner_deployments",
+            alias: "GO Partner Deployments Info",
             columns: cols
         };
 
@@ -42,12 +66,18 @@
     // Download the data
     goConnector.getData = function(table, doneCallback) {
         const getData = function(resp) {
-            const regions = resp.results;
-            const tableData = regions.map(function(region) {
+            const partnerDeployments = resp.results;
+            const tableData = partnerDeployments.map(function(pd) {
                 return {
-                    id: region.id,
-                    name: region.name,
-                    region_name: region.region_name
+                    id: pd.id,
+                    name: pd.name,
+                    role: pd.role,
+                    activity: pd.activity?.activity,
+                    start_date: pd.start_date,
+                    end_date: pd.end_date,
+                    parent_society: pd.parent_society?.name,
+                    country_deployed_to: pd.country_deployed_to?.name,
+                    districts_deployed_to: pd.district_deployed_to.name
                 };
             });
 
@@ -70,8 +100,8 @@
     $(document).ready(function() {
         $("#submitButton").click(function() {
             // setCredentials(); // TODO: probably needed for credentials in the future
-            tableau.connectionName = "GO Regions"; // This will be the data source name in Tableau
+            tableau.connectionName = "GO Partner Deployments"; // This will be the data source name in Tableau
             tableau.submit(goConnector); // This sends the connector object to Tableau
-        }).text("Get GO Regions Data!");
+        }).text("Get GO Partner Deployments Data!");
     });
 })();

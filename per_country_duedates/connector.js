@@ -6,7 +6,7 @@
     // const getAjaxHeader = goConfig.getAjaxHeader; // TODO: probably needed for credentials in the future
     // const setCredentials = goConfig.setCredentails; // TODO: probably needed for credentials in the future
 
-    const url = apiUrl + '/region/?tableau=true&${bigLimit}';
+    const url = apiUrl + '/per_country_duedate/?tableau=true&${bigLimit}';
 
     // Create the connector object
     const goConnector = tableau.makeConnector();
@@ -22,14 +22,26 @@
             alias: "name",
             dataType: tableau.dataTypeEnum.string
         }, {
-            id: "region_name",
-            alias: "region name",
+            id: "code",
+            alias: "code",
             dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "updated_at",
+            alias: "updated at",
+            dataType: tableau.dataTypeEnum.datetime
+        }, {
+            id: "country_name",
+            alias: "country",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "language",
+            alias: "language",
+            dataType: tableau.dataTypeEnum.int
         }];
 
         const tableInfo = {
-            id: "regions",
-            alias: "GO Regions Info",
+            id: "per_country_duedates",
+            alias: "GO PERCountryDueDates Info",
             columns: cols
         };
 
@@ -42,12 +54,15 @@
     // Download the data
     goConnector.getData = function(table, doneCallback) {
         const getData = function(resp) {
-            const regions = resp.results;
-            const tableData = regions.map(function(region) {
+            const perCountryDuedates = resp.results;
+            const tableData = perCountryDuedates.map(function(pcd) {
                 return {
-                    id: region.id,
-                    name: region.name,
-                    region_name: region.region_name
+                    id: pcd.id,
+                    name: pcd.name,
+                    code: pcd.code,
+                    updated_at: pcd.updated_at,
+                    country_name: pcd.country?.name,
+                    language: pcd.language
                 };
             });
 
@@ -70,8 +85,8 @@
     $(document).ready(function() {
         $("#submitButton").click(function() {
             // setCredentials(); // TODO: probably needed for credentials in the future
-            tableau.connectionName = "GO Regions"; // This will be the data source name in Tableau
+            tableau.connectionName = "GO PERCountryDueDates"; // This will be the data source name in Tableau
             tableau.submit(goConnector); // This sends the connector object to Tableau
-        }).text("Get GO Regions Data!");
+        }).text("Get GO PERCountryDueDates Data!");
     });
 })();
