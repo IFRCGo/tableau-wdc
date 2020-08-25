@@ -87,13 +87,15 @@
                     available: eru.available,
                     units: eru.units,
                     equipment_units: eru.equipment_units,
-                    deployed_to_name: eru.deployed_to?.name,
-                    deployed_to_society_name: eru.deployed_to?.society_name,
-                    event_id: eru.event?.id,
-                    event_name: eru.event?.name,
-                    eru_owner_created_at: eru.eru_owner?.created_at,
-                    eru_owner_updated_at: eru.eru_owner?.updated_at,
-                    eru_owner_ns_country: eru.eru_owner?.national_society_country?.name
+                    deployed_to_name: eru.deployed_to ? eru.deployed_to.name : null,
+                    deployed_to_society_name: eru.deployed_to ? eru.deployed_to.society_name : null,
+                    event_id: eru.event ? eru.event.id : null,
+                    event_name: eru.event ? eru.event.name : null,
+                    eru_owner_created_at: eru.eru_owner ? eru.eru_owner.created_at : null,
+                    eru_owner_updated_at: eru.eru_owner ? eru.eru_owner.updated_at : null,
+                    eru_owner_ns_country: eru.eru_owner
+                        ? (eru.eru_owner.national_society_country ? eru.eru_owner.national_society_country.name : null)
+                        : null
                 };
             });
 

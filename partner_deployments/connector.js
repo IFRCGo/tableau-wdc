@@ -72,11 +72,11 @@
                     id: pd.id,
                     name: pd.name,
                     role: pd.role,
-                    activity: pd.activity?.activity,
+                    activity: pd.activity ? pd.activity.activity : null,
                     start_date: pd.start_date,
                     end_date: pd.end_date,
-                    parent_society: pd.parent_society?.name,
-                    country_deployed_to: pd.country_deployed_to?.name,
+                    parent_society: pd.parent_society ? pd.parent_society.name : null,
+                    country_deployed_to: pd.country_deployed_to ? pd.country_deployed_to.name : null,
                     districts_deployed_to: pd.district_deployed_to.name
                 };
             });

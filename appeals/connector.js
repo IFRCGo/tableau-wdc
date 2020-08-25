@@ -125,7 +125,7 @@
                     id: appeal.id,
                     aid: appeal.aid,
                     name: appeal.name,
-                    dtype: appeal.dtype?.name,
+                    dtype: appeal.dtype ? appeal.dtype.name : null,
                     atype: appeal.atype,
                     status: appeal.status,
                     code: appeal.code,
@@ -137,13 +137,13 @@
                     end_date: appeal.end_date,
                     created_at: appeal.created_at,
                     modified_at: appeal.modified_at,
-                    event_id: appeal.event?.id,
-                    event_name: appeal.event?.name,
+                    event_id: appeal.event ? appeal.event.id : null,
+                    event_name: appeal.event ? appeal.event.name : null,
                     needs_confirmation: appeal.needs_confirmation,
-                    country_id: appeal.country?.id,
-                    country_name: appeal.country?.name,
-                    region_id: appeal.region?.id,
-                    region_name: appeal.region?.region_name,
+                    country_id: appeal.country ? appeal.country.id : null,
+                    country_name: appeal.country ? appeal.country.name : null,
+                    region_id: appeal.region ? appeal.region.id : null,
+                    region_name: appeal.region ? appeal.region.region_name : null,
                 };
             });
 

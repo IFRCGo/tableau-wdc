@@ -427,9 +427,9 @@
                 return {
                     id: fr.id,
                     summary: fr.summary,
-                    dtype: fr.dtype?.name,
-                    event_id: fr.event?.id,
-                    event_name: fr.event?.name,
+                    dtype: fr.dtype ? fr.dtype.name : null,
+                    event_id: fr.event ? fr.event.id : null,
+                    event_name: fr.event ? fr.event.name : null,
                     district_ids: fr.districts.id,
                     district_names: fr.districts.name,
                     region_ids: fr.regions.id,

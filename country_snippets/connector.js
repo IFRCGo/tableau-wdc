@@ -54,8 +54,8 @@
             const tableData = countrySnippets.map(function(csnip) {
                 return {
                     id: csnip.id,
-                    country_id: csnip.country?.id,
-                    country_name: csnip.country?.name,
+                    country_id: csnip.country ? csnip.country.id : null,
+                    country_name: csnip.country ? csnip.country.name : null,
                     snippet: csnip.snippet,
                     visibility: csnip.visibility
                 };

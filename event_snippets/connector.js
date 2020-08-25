@@ -54,8 +54,8 @@
             const tableData = eventSnippets.map(function(esnip) {
                 return {
                     id: esnip.id,
-                    event_id: esnip.event?.id,
-                    event_name: esnip.event?.name,
+                    event_id: esnip.event ? esnip.event.id : null,
+                    event_name: esnip.event ? esnip.event.name : null,
                     snippet: esnip.snippet,
                     visibility: esnip.visibility
                 };

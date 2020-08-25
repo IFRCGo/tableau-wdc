@@ -61,7 +61,7 @@
                     name: pcd.name,
                     code: pcd.code,
                     updated_at: pcd.updated_at,
-                    country_name: pcd.country?.name,
+                    country_name: pcd.country ? pcd.country.name : null,
                     language: pcd.language
                 };
             });

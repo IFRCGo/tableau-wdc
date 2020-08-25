@@ -73,9 +73,9 @@
                     name: sr.name,
                     document: sr.document,
                     document_url: sr.document_url,
-                    event_id: sr.event?.id,
-                    event_name: sr.event?.name,
-                    type: sr.type?.type,
+                    event_id: sr.event ? sr.event.id : null,
+                    event_name: sr.event ? sr.event.name : null,
+                    type: sr.type ? sr.type.type : null,
                     created_at: sr.created_at,
                     visibility: sr.visibility
                 };

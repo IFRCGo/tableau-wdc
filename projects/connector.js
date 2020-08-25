@@ -139,11 +139,13 @@
                 return {
                     id: proj.id,
                     name: proj.name,
-                    country_name: proj.project_country_detail?.name,
-                    district_name: proj.project_districts_detail?.map((dist) => dist.name).join(", "),
-                    reporting_ns_name: proj.reporting_ns_detail?.name,
-                    dtype: proj.dtype_detail?.name,
-                    event_name: proj.event_detail?.name,
+                    country_name: proj.project_country_detail ? proj.project_country_detail.name : null,
+                    district_name: proj.project_districts_detail
+                        ? proj.project_districts_detail.map((dist) => dist.name).join(", ")
+                        : null,
+                    reporting_ns_name: proj.reporting_ns_detail ? proj.reporting_ns_detail.name : null,
+                    dtype: proj.dtype_detail ? proj.dtype_detail.name : null,
+                    event_name: proj.event_detail ? proj.event_detail.name : null,
                     primary_sector_display: proj.primary_sector_display,
                     programme_type_display: proj.programme_type_display,
                     operation_type_display: proj.operation_type_display,

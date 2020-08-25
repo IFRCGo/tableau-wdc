@@ -76,8 +76,8 @@
                     deployment_needed: sa.deployment_needed,
                     is_private: sa.is_private,
                     created_at: sa.created_at,
-                    event_id: sa.event?.id,
-                    event_name: sa.event?.name
+                    event_id: sa.event ? sa.event.id : null,
+                    event_name: sa.event ? sa.event.name : null
                 };
             });
 

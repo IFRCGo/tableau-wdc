@@ -67,8 +67,8 @@
                     document: doc.document,
                     document_url: doc.document_url,
                     created_at: doc.created_at,
-                    appeal_id: doc.appeal?.id,
-                    appeal_name: doc.appeal?.name                   
+                    appeal_id: doc.appeal ? doc.appeal.id : '',
+                    appeal_name: doc.appeal ? doc.appeal.name : ''
                 };
             });
 

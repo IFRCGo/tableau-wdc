@@ -106,8 +106,8 @@
             const tableData = peroverviews.map(function(po) {
                 return {
                     id: po.id,
-                    user_id: po.user?.id,
-                    country_name: po.country?.name,
+                    user_id: po.user ? po.user.id : null,
+                    country_name: po.country ? po.country.name : null,
                     date_of_current_capacity_assessment: po.date_of_current_capacity_assessment,
                     type_of_capacity_assessment: po.type_of_capacity_assessment,
                     date_of_last_capacity_assessment: po.date_of_last_capacity_assessment,

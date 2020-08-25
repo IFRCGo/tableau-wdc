@@ -54,8 +54,8 @@
             const tableData = regionSnippets.map(function(rsnip) {
                 return {
                     id: rsnip.id,
-                    region_id: rsnip.region?.id,
-                    region_name: rsnip.region?.name,
+                    region_id: rsnip.region ? rsnip.region.id : null,
+                    region_name: rsnip.region ? rsnip.region.name : null,
                     snippet: rsnip.snippet,
                     visibility: rsnip.visibility
                 };

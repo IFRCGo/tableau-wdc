@@ -90,7 +90,7 @@
             const tableData = perworkplans.map(function(pwp) {
                 return {
                     id: pwp.id,
-                    user_id: pwp.user?.id,
+                    user_id: pwp.user ? pwp.user.id : null,
                     prioritization: pwp.prioritization,
                     components: pwp.components,
                     benchmark: pwp.benchmark,
