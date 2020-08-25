@@ -101,7 +101,7 @@
                     id: event.id,
                     name: event.name,
                     summary: event.summary,
-                    dtype: event.dtype?.name,
+                    dtype: event.dtype ? event.dtype.name : '',
                     country_names: event.countries.name,
                     num_affected: event.num_affected,
                     ifrc_severity_level: event.ifrc_severity_level,
