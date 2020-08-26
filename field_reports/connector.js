@@ -229,10 +229,6 @@
             alias: "sit fields date",
             dataType: tableau.dataTypeEnum.datetime
         }, {
-            id: "epi_figures_source",
-            alias: "epi figures source",
-            dataType: tableau.dataTypeEnum.int
-        }, {
             id: "other_sources",
             alias: "other sources",
             dataType: tableau.dataTypeEnum.string
@@ -404,6 +400,14 @@
             id: "previous_update",
             alias: "previous update",
             dataType: tableau.dataTypeEnum.datetime
+        }, {
+            id: "who_num_assisted",
+            alias: "who num assisted",
+            dataType: tableau.dataTypeEnum.int
+        }, {
+            id: "health_min_num_assisted",
+            alias: "health min num assisted",
+            dataType: tableau.dataTypeEnum.int
         }];
 
         const tableInfo = {
@@ -463,20 +467,6 @@
                     epi_confirmed_cases: fr.epi_confirmed_cases,
                     epi_num_dead: fr.epi_num_dead,
                     epi_figures_source: fr.epi_figures_source,
-                    health_min_cases: fr.health_min_cases,
-                    health_min_suspected_cases: fr.health_min_suspected_cases,
-                    health_min_probable_cases: fr.health_min_probable_cases,
-                    health_min_confirmed_cases: fr.health_min_confirmed_cases,
-                    health_min_num_dead: fr.health_min_num_dead,
-                    who_cases: fr.who_cases,
-                    who_suspected_cases: fr.who_suspected_cases,
-                    who_probable_cases: fr.who_probable_cases,
-                    who_confirmed_cases: fr.who_confirmed_cases,
-                    who_num_dead: fr.who_num_dead,
-                    other_cases: fr.other_cases,
-                    other_suspected_cases: fr.other_suspected_cases,
-                    other_probable_cases: fr.other_probable_cases,
-                    other_confirmed_cases: fr.other_confirmed_cases,
                     who_num_assisted: fr.who_num_assisted,
                     health_min_num_assisted: fr.health_min_num_assisted,
                     gov_num_potentially_affected: fr.gov_num_potentially_affected,
@@ -491,10 +481,6 @@
                     other_num_potentially_affected: fr.other_num_potentially_affected,
                     other_num_highest_risk: fr.other_num_highest_risk,
                     other_affected_pop_centres: fr.other_affected_pop_centres,
-                    cases: fr.cases,
-                    suspected_cases: fr.suspected_cases,
-                    probable_cases: fr.probable_cases,
-                    confirmed_cases: fr.confirmed_cases,
                     sit_fields_date: fr.sit_fields_date,
                     other_sources: fr.other_sources,
                     actions_others: fr.actions_others,
