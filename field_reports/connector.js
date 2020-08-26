@@ -411,7 +411,6 @@
             alias: "GO Field Reports Info",
             columns: cols
         };
-        console.log(tableInfo);
 
         schemaCallback([tableInfo]);
     };
