@@ -2,10 +2,10 @@
     const goConfig = window.goConfig;
     const apiUrl = goConfig.apiUrl;
     const bigLimit = goConfig.bigLimit;
-    // const errorHandler = goConfig.errorHandler; // TODO: probably needed for credentials in the future
+    const errorHandler = goConfig.errorHandler;
     const tableauInit = goConfig.tableauInit;
-    // const getAjaxHeader = goConfig.getAjaxHeader; // TODO: probably needed for credentials in the future
-    // const setCredentials = goConfig.setCredentails; // TODO: probably needed for credentials in the future
+    const getAjaxHeader = goConfig.getAjaxHeader;
+    const setCredentials = goConfig.setCredentials;
 
     const url = apiUrl + `/disaster_type/?tableau=true&${bigLimit}`;
 
@@ -59,8 +59,8 @@
         $.ajax({
             dataType: "json",
             url: url,
-            // headers: getAjaxHeader(), // TODO: probably needed for credentials in the future
-            // error: errorHandler, // TODO: probably needed for credentials in the future
+            headers: getAjaxHeader(),
+            error: errorHandler,
             success: getData
         });
     };
@@ -70,7 +70,7 @@
     // Create event listeners for when the user submits the form
     $(document).ready(function() {
         $("#submitButton").click(function() {
-            // setCredentials(); // TODO: probably needed for credentials in the future
+            setCredentials();
             tableau.connectionName = "GO Disaster Types"; // This will be the data source name in Tableau
             tableau.submit(goConnector); // This sends the connector object to Tableau
         }).text("Get GO Disaster Types Data!");
