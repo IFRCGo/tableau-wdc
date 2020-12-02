@@ -31,3 +31,14 @@ Most endpoints follow the naming convention of the GO API, but in plural forms.
 | Situation Reports      | /situation_reports      | https://ifrcgo.org/tableau-wdc/situation_reports      |
 | Situation Report Types | /situation_report_types | https://ifrcgo.org/tableau-wdc/situation_report_types |
 | Surge Alerts           | /surge_alerts           | https://ifrcgo.org/tableau-wdc/surge_alerts           |
+
+## Development
+
+### Adding new endpoints
+
+- Create a folder with the endpoint name, containing an `index.html` and a `connector.js` (best to copy from existing ones)
+- `index.html`
+  - Change `<title>`
+- `connector.js`
+  - Add/remove/change columns in the `cols` var (it's like the template), and also update in `tableData` (the actual values)
+  - Change the `connectionName` and `text()` for the submit at the bottom
